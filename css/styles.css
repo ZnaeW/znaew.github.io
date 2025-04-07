@@ -101,6 +101,7 @@ ul {
     font-size: var(--fz-heading-lg);
     margin-bottom: 10px;
     color: var(--text-primary);
+    white-space: nowrap;
 }
 
 .site-subtitle {
@@ -152,7 +153,7 @@ ul {
 .social-icons {
     display: flex;
     margin-top: 50px;
-    gap: 20px;
+    gap: 25px;
 }
 
 .social-icons a {

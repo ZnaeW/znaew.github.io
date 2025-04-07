@@ -1,9 +1,4 @@
-// Este archivo JavaScript está vacío ya que no había ningún código JS 
-// en el archivo original. Sin embargo, se ha incluido en la estructura
-// para futuras implementaciones de interactividad.
-
-// Ejemplo de código que podrías agregar para hacer que los enlaces internos 
-// tengan un desplazamiento suave:
+// Este archivo JavaScript implementa un desplazamiento suave para los enlaces de navegación interna
 
 document.addEventListener('DOMContentLoaded', () => {
     // Seleccionar todos los enlaces que comienzan con #
