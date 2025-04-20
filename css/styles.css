@@ -137,7 +137,7 @@ ul {
 .nav-item {
     position: relative;
     margin-bottom: 20px;
-    padding-left: 40px; /* Espacio para la línea */
+    padding-left: 45px; /* Espacio para la línea y margen adicional */
     color: var(--text-secondary);
     font-size: var(--fz-sm); /* Tamaño más pequeño como en la referencia */
     text-transform: uppercase;
@@ -152,7 +152,7 @@ ul {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 30px;
+    width: 25px;
     height: 1px;
     background-color: var(--text-muted);
     transition: all 0.3s ease;
@@ -169,7 +169,7 @@ ul {
 }
 
 .nav-item:hover:before {
-    width: 40px;
+    width: 35px;
     background-color: var(--text-primary);
 }
 
