@@ -90,76 +90,101 @@ ul {
     width: 40%;
     max-width: 500px;
     height: 100vh;
-    padding: 100px;
+    padding: 80px 0 0 80px; /* Padding específico para alinear con imagen de referencia */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* Mantener flex-start para que los elementos se posicionen desde arriba */
+    align-items: flex-start; /* Alineado a la izquierda como en la imagen */
     background-color: var(--secondary-bg);
 }
 
 .site-title {
-    font-size: var(--fz-heading-lg);
-    margin-bottom: 10px;
+    font-size: 52px; /* Aumentado ligeramente para match con referencia */
+    margin-bottom: 5px;
+    margin-top: 0; /* Posicionado en la parte superior */
     color: var(--text-primary);
     white-space: nowrap;
+    text-align: left;
+    font-weight: 700; /* Más bold para coincidir con referencia */
 }
 
 .site-subtitle {
     color: var(--text-secondary);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-size: var(--fz-xl);
+    text-align: left;
 }
 
 .site-description {
-    margin-bottom: 30px;
+    margin-bottom: 30px; /* Reducido ya que el menú se mueve hacia abajo */
     font-size: var(--fz-md);
     line-height: 1.6;
     color: var(--text-muted);
+    text-align: left;
+    max-width: 300px; /* Restringir ancho para mejor legibilidad */
 }
 
 .nav {
-    margin-top: 50px;
+    margin-top: auto; /* Empujar hacia abajo para que esté debajo del centro */
+    margin-bottom: 80px; /* Mantener espacio desde los íconos sociales */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: auto;
+    position: relative;
 }
 
 .nav-item {
     position: relative;
     margin-bottom: 20px;
-    padding-left: 30px;
+    padding-left: 40px; /* Espacio para la línea */
     color: var(--text-secondary);
-    font-size: var(--fz-md);
+    font-size: var(--fz-sm); /* Tamaño más pequeño como en la referencia */
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px; /* Más espaciado entre letras */
+    width: auto;
+    display: block;
 }
 
 .nav-item:before {
     content: "";
     position: absolute;
     left: 0;
-    top: 12px;
-    width: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
     height: 1px;
-    background-color: var(--accent);
+    background-color: var(--text-muted);
+    transition: all 0.3s ease;
 }
 
 .nav-item a {
-    color: var(--text-secondary);
+    color: var(--text-muted);
     transition: var(--transition);
+    text-decoration: none;
 }
 
 .nav-item a:hover, .nav-item a:focus {
     color: var(--text-primary);
 }
 
+.nav-item:hover:before {
+    width: 40px;
+    background-color: var(--text-primary);
+}
+
 .social-icons {
     display: flex;
-    margin-top: 50px;
+    margin-top: 40px; /* Espacio desde la navegación */
+    margin-bottom: 80px; /* Espacio desde el borde inferior */
     gap: 25px;
+    justify-content: flex-start;
 }
 
 .social-icons a {
     color: var(--text-muted);
     transition: var(--transition);
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .social-icons a:hover {
@@ -171,13 +196,17 @@ ul {
 .right-column {
     margin-left: 40%;
     width: 60%;
-    padding: 100px;
-    padding-top: 175px; /* Alineado con el nombre en la columna izquierda */
+    padding: 120px 80px;
+    padding-top: 250px; /* CAMBIADO: Aumentado significativamente para bajar las secciones */
     padding-bottom: 150px;
 }
 
 .section {
-    margin-bottom: 100px;
+    margin-bottom: 120px; /* CAMBIADO: Aumentado de 100px a 120px para más espacio entre secciones */
+}
+
+.section:first-child {
+    margin-top: 50px; /* NUEVO: Añadido margen adicional a la primera sección */
 }
 
 .section:last-child {
@@ -296,11 +325,12 @@ ul {
 /* Responsive */
 @media (max-width: 1080px) {
     .left-column {
-        padding: 60px;
+        padding: 60px 0 0 60px;
     }
     
     .right-column {
         padding: 60px;
+        padding-top: 200px; /* CAMBIADO: Ajustado para pantallas más pequeñas */
     }
     
     .skill-tags {
@@ -319,17 +349,20 @@ ul {
         max-width: 100%;
         height: auto;
         padding: 50px 25px;
+        align-items: center;
     }
     
     .right-column {
         margin-left: 0;
         width: 100%;
         padding: 50px 25px;
-        padding-top: 30px; /* Reajuste para móviles */
+        padding-top: 30px; /* CAMBIADO: Reajustado para móviles */
     }
     
     .nav {
-        margin-top: 30px;
+        margin-top: 50px; /* Más espacio en móviles */
+        margin-bottom: 50px; /* Mantener espacio de separación */
+        align-items: center;
     }
     
     .skill-tags {
@@ -338,6 +371,10 @@ ul {
     
     .skill-tag {
         padding: 6px 8px;
+    }
+    
+    .section:first-child {
+        margin-top: 0; /* NUEVO: Resetear margen en móviles */
     }
 }
 
