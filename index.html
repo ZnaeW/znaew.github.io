@@ -1,213 +1,920 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Freddy Asenjo - Biotechnology Engineer Developer</title>
+    <title>Freddy Asenjo — Biotechnology Engineer & Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* ─── VARIABLES ─── */
+        :root {
+            --bg-deep:        #0f0a1a;
+            --bg-surface:     #16112a;
+            --bg-elevated:    #1e1738;
+            --accent:         #a78bfa;
+            --accent-dim:     #6d5dab;
+            --accent-glow:    rgba(167, 139, 250, 0.08);
+            --accent-border:  rgba(167, 139, 250, 0.12);
+            --accent-hover:   rgba(167, 139, 250, 0.20);
+            --text-primary:   #eae6f2;
+            --text-secondary: #b0a9c0;
+            --text-muted:     #706a82;
+            --white-pure:     #ffffff;
+
+            --font-display: "Cormorant Garamond", "Georgia", serif;
+            --font-body:    "DM Sans", "Helvetica Neue", sans-serif;
+            --font-mono:    "JetBrains Mono", "SF Mono", monospace;
+
+            --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+            --ease-smooth: cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        /* ─── RESET ─── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background: var(--bg-deep);
+            color: var(--text-secondary);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ─── CURSOR SPOTLIGHT ─── */
+        .spotlight {
+            pointer-events: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(167, 139, 250, 0.06),
+                transparent 40%
+            );
+        }
+        .spotlight.active { opacity: 1; }
+
+        /* ─── LAYOUT ─── */
+        .layout {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ─── LEFT COLUMN ─── */
+        .left-col {
+            position: fixed;
+            top: 0; left: 0;
+            width: 42%;
+            max-width: 520px;
+            height: 100vh;
+            padding: 80px 60px 60px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .left-col__top { }
+
+        .identity__name {
+            font-family: var(--font-display);
+            font-size: 56px;
+            font-weight: 500;
+            font-style: normal;
+            color: var(--text-primary);
+            line-height: 1.05;
+            letter-spacing: -0.01em;
+            margin-bottom: 8px;
+        }
+
+        .identity__role {
+            font-family: var(--font-body);
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .identity__tagline {
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 300px;
+        }
+
+        /* ─── PROFILE PHOTO ─── */
+        .identity__photo {
+            margin: 22px 0 24px;
+        }
+
+        .identity__photo img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: 50% 30%;
+            border: 2px solid var(--accent-border);
+            transition: border-color 0.3s var(--ease-smooth);
+        }
+
+        .identity__photo img:hover {
+            border-color: var(--accent-dim);
+        }
+
+        .identity__photo-placeholder {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            background: var(--bg-surface);
+            border: 2px solid var(--accent-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 28px;
+            transition: border-color 0.3s var(--ease-smooth);
+        }
+
+        .identity__photo-placeholder:hover {
+            border-color: var(--accent-dim);
+        }
+
+        /* ─── NAVIGATION ─── */
+        .nav {
+            margin-top: auto;
+            padding-bottom: 40px;
+        }
+
+        .nav__item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 10px 0;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .nav__number {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 400;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            min-width: 20px;
+            transition: color 0.3s var(--ease-smooth);
+        }
+
+        .nav__line {
+            width: 28px;
+            height: 1px;
+            background: var(--text-muted);
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .nav__label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            transition: color 0.3s var(--ease-smooth);
+        }
+
+        .nav__item:hover .nav__line,
+        .nav__item.active .nav__line {
+            width: 52px;
+            background: var(--text-primary);
+        }
+
+        .nav__item:hover .nav__label,
+        .nav__item.active .nav__label,
+        .nav__item:hover .nav__number,
+        .nav__item.active .nav__number {
+            color: var(--text-primary);
+        }
+
+        /* ─── SOCIAL ─── */
+        .social {
+            display: flex;
+            gap: 22px;
+            padding-bottom: 10px;
+        }
+
+        .social__link {
+            color: var(--text-muted);
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.25s var(--ease-smooth);
+            display: inline-flex;
+        }
+
+        .social__link:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* ─── RIGHT COLUMN ─── */
+        .right-col {
+            margin-left: 42%;
+            width: 58%;
+            padding: 80px 80px 80px 60px;
+            max-width: 720px;
+        }
+
+        /* ─── SECTIONS ─── */
+        .section {
+            margin-bottom: 100px;
+        }
+
+        .section:last-of-type {
+            margin-bottom: 60px;
+        }
+
+        .section__header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .section__number {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            font-weight: 300;
+            color: var(--accent-dim);
+            letter-spacing: 0.05em;
+        }
+
+        .section__title {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .section__line {
+            flex: 1;
+            height: 1px;
+            background: var(--accent-border);
+        }
+
+        .section p {
+            margin-bottom: 18px;
+            font-size: 15px;
+            line-height: 1.75;
+        }
+
+        .section p a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-border);
+            transition: border-color 0.2s ease;
+        }
+
+        .section p a:hover {
+            border-color: var(--accent);
+        }
+
+        /* ─── EXPERIENCE CARDS ─── */
+        .exp-card {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 24px;
+            padding: 24px;
+            margin: 0 -24px 8px -24px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            transition: all 0.25s var(--ease-smooth);
+        }
+
+        .exp-card:hover {
+            background: var(--bg-surface);
+            border-color: var(--accent-border);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(15, 10, 26, 0.5);
+        }
+
+        .exp-card__period {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 0.03em;
+            padding-top: 4px;
+            line-height: 1.5;
+        }
+
+        .exp-card__title {
+            font-family: var(--font-body);
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            transition: color 0.2s ease;
+        }
+
+        .exp-card:hover .exp-card__title {
+            color: var(--accent);
+        }
+
+        .exp-card__subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .exp-card__desc {
+            font-size: 14px;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .exp-card__tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 400;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(167, 139, 250, 0.08);
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        /* ─── RESEARCH / PUBLICATIONS ─── */
+        .pub-entry {
+            padding: 20px 24px;
+            margin: 0 -24px 4px -24px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            transition: all 0.25s var(--ease-smooth);
+        }
+
+        .pub-entry:hover {
+            background: var(--bg-surface);
+            border-color: var(--accent-border);
+        }
+
+        .pub-entry__title {
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            line-height: 1.4;
+            transition: color 0.2s ease;
+        }
+
+        .pub-entry:hover .pub-entry__title {
+            color: var(--accent);
+        }
+
+        .pub-entry__meta {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .pub-entry__meta span {
+            opacity: 0.4;
+            margin: 0 6px;
+        }
+
+        /* ─── STACK SECTION ─── */
+        .stack-group {
+            margin-bottom: 28px;
+        }
+
+        .stack-group__label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .stack-group__items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .stack-tag {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 400;
+            padding: 7px 14px;
+            border-radius: 6px;
+            border: 1px solid var(--accent-border);
+            color: var(--text-secondary);
+            background: transparent;
+            transition: all 0.25s var(--ease-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stack-tag i {
+            font-size: 14px;
+            opacity: 0.5;
+            transition: opacity 0.25s ease;
+        }
+
+        .stack-tag:hover {
+            border-color: var(--accent-hover);
+            color: var(--accent);
+            background: var(--accent-glow);
+            transform: translateY(-1px);
+        }
+
+        .stack-tag:hover i {
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        /* ─── CONTACT ─── */
+        .contact-text {
+            font-size: 15px;
+            line-height: 1.75;
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            font-weight: 400;
+            padding: 14px 28px;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.25s var(--ease-smooth);
+            letter-spacing: 0.03em;
+        }
+
+        .contact-btn:hover {
+            background: var(--accent-glow);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(167, 139, 250, 0.12);
+        }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            text-align: left;
+            padding-top: 60px;
+            border-top: 1px solid var(--accent-border);
+        }
+
+        .footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: var(--accent);
+        }
+
+        /* ─── SCROLL-SPY INDICATOR (left col) ─── */
+        .nav__item.active .nav__number { color: var(--accent); }
+
+        /* ─── GRAIN OVERLAY (subtle texture) ─── */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1100px) {
+            .left-col { padding: 60px 40px 40px 60px; }
+            .right-col { padding: 80px 60px 80px 40px; }
+            .identity__name { font-size: 46px; }
+        }
+
+        @media (max-width: 768px) {
+            .layout { flex-direction: column; }
+            .spotlight { display: none; }
+
+            .left-col {
+                position: relative;
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                padding: 50px 28px 30px;
+                align-items: center;
+                text-align: center;
+            }
+
+            .identity__tagline { max-width: 100%; }
+            .identity__photo { display: flex; justify-content: center; }
+
+            .nav { margin-top: 36px; padding-bottom: 20px; }
+
+            .right-col {
+                margin-left: 0;
+                width: 100%;
+                max-width: 100%;
+                padding: 30px 28px 60px;
+            }
+
+            .section { margin-bottom: 80px; }
+
+            .exp-card {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+        }
+
+        /* ─── FADE-IN ON LOAD ─── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .left-col__top   { animation: fadeUp 0.6s var(--ease-out) 0.1s both; }
+        .nav              { animation: fadeUp 0.6s var(--ease-out) 0.25s both; }
+        .social           { animation: fadeUp 0.6s var(--ease-out) 0.35s both; }
+        .section          { animation: fadeUp 0.5s var(--ease-out) 0.3s both; }
+    </style>
 </head>
 <body>
+    <!-- Cursor Spotlight -->
+    <div class="spotlight" id="spotlight"></div>
+
     <div class="layout">
-        <!-- Fixed Left Column -->
-        <div class="left-column">
-            <h1 class="site-title">Freddy Asenjo</h1>
-            <h2 class="site-subtitle">Biotechnology Engineer</h2>
-            
-            <p class="site-description">
-                Creativity and research: from Bioinformatics to Full-Stack Development
-            </p>
-            
-            <nav class="nav">
-                <div class="nav-item">
-                    <a href="#background">Background</a>
+        <!-- ═══════ LEFT COLUMN ═══════ -->
+        <aside class="left-col">
+            <div class="left-col__top">
+                <h1 class="identity__name">Freddy Asenjo</h1>
+                <h2 class="identity__role">Biotechnology Engineer & Developer</h2>
+                
+                <div class="identity__photo">
+                    <img src="img/profile.jpg" alt="Freddy Asenjo" />
                 </div>
-                <div class="nav-item">
-                    <a href="#habilidades">Stack</a>
-                </div>
-                <div class="nav-item">
-                    <a href="#contacto">Contact</a>
-                </div>
+
+                <p class="identity__tagline">
+                    From bioinformatics pipelines to full-stack systems. Building software where science meets data.
+                </p>
+            </div>
+
+            <nav class="nav" id="nav">
+                <a href="#background" class="nav__item active" data-section="background">
+                    <span class="nav__number">01</span>
+                    <span class="nav__line"></span>
+                    <span class="nav__label">Background</span>
+                </a>
+                <a href="#research" class="nav__item" data-section="research">
+                    <span class="nav__number">02</span>
+                    <span class="nav__line"></span>
+                    <span class="nav__label">Research</span>
+                </a>
+                <a href="#projects" class="nav__item" data-section="projects">
+                    <span class="nav__number">03</span>
+                    <span class="nav__line"></span>
+                    <span class="nav__label">Projects</span>
+                </a>
+                <a href="#stack" class="nav__item" data-section="stack">
+                    <span class="nav__number">04</span>
+                    <span class="nav__line"></span>
+                    <span class="nav__label">Stack</span>
+                </a>
+                <a href="#contact" class="nav__item" data-section="contact">
+                    <span class="nav__number">05</span>
+                    <span class="nav__line"></span>
+                    <span class="nav__label">Contact</span>
+                </a>
             </nav>
-            
-            <div class="social-icons">
-                <a href="#" aria-label="GitHub">
+
+            <div class="social">
+                <a href="https://github.com/ZnaeW" class="social__link" target="_blank" aria-label="GitHub">
                     <i class="fa-brands fa-github"></i>
                 </a>
-                <a href="https://twitter.com/znaew" aria-label="Twitter" target="_blank">
+                <a href="https://twitter.com/znaew" class="social__link" target="_blank" aria-label="Twitter">
                     <i class="fa-brands fa-twitter"></i>
                 </a>
-                <a href="#" aria-label="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
             </div>
-        </div>
-        
-        <!-- Scrollable Right Column -->
-        <div class="right-column">
+        </aside>
+
+        <!-- ═══════ RIGHT COLUMN ═══════ -->
+        <main class="right-col">
+
+            <!-- ── 01 BACKGROUND ── -->
             <section id="background" class="section">
-                <h2 class="section-title">Background</h2>
-                
+                <div class="section__header">
+                    <span class="section__number">01</span>
+                    <h2 class="section__title">Background</h2>
+                    <div class="section__line"></div>
+                </div>
+
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae justo euismod, 
-                    fermentum nisi vel, ultricies orci. Etiam rhoncus purus ut dui efficitur, eget ultricies 
-                    nunc tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere 
-                    cubilia curae; Proin volutpat sapien vitae purus tempus, quis tristique urna commodo.
+                    I'm a Biotechnology Engineer who found his way into software through the lab. It started with Python scripts to avoid repeating manual analysis — and turned into building complete systems. My path has taken me from genomic data pipelines to full-stack web applications.
                 </p>
-                
                 <p>
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-                    Vivamus vel nulla vel enim placerat tempor. Vivamus non arcu eu tortor sagittis gravida. 
-                    Duis eget tempus sapien, ut ultricies magna. Nulla facilisi. In hac habitasse platea dictumst. 
-                    Suspendisse potenti. Aliquam erat volutpat.
+                    Today I work as a backend and full-stack developer, building APIs, data processing services, and the infrastructure that connects them. My background in biotech gives me a different lens: I think about problems from the domain first, then choose the right tools — not the other way around.
                 </p>
-                
                 <p>
-                    Nullam congue dui a sem bibendum, at vestibulum orci faucibus. Quisque eu dictum magna. 
-                    Nullam ornare cursus lorem, non convallis ex condimentum eget. Vestibulum vitae metus sed 
-                    augue ultrices dictum. Cras tempor odio nec nibh efficitur, vel ullamcorper est pretium.
+                    I've published research in <a href="#">bioinformatics</a> and continue to believe that the best engineering comes from deeply understanding the problem, not just the framework.
                 </p>
             </section>
-            
-            <section id="habilidades" class="section">
-                <h2 class="section-title">Stack</h2>
-                
-                <p>
-                    These are some of the technologies I have been working with recently:
+
+            <!-- ── 02 RESEARCH ── -->
+            <section id="research" class="section">
+                <div class="section__header">
+                    <span class="section__number">02</span>
+                    <h2 class="section__title">Research</h2>
+                    <div class="section__line"></div>
+                </div>
+
+                <p style="margin-bottom: 28px;">
+                    Peer-reviewed publications from my work in biotechnology and bioinformatics.
                 </p>
-                
-                <div class="skill-tags">
-                    <!-- Django -->
-                    <div class="skill-tag">
-                        <i class="fa-solid fa-code"></i>
-                        <span>Django</span>
+
+                <div class="pub-entry">
+                    <div class="pub-entry__title">
+                        Genomic characterization and comparative analysis of biosynthetic gene clusters in actinobacteria
                     </div>
-                    <!-- Docker -->
-                    <div class="skill-tag">
-                        <i class="fa-brands fa-docker"></i>
-                        <span>Docker</span>
+                    <div class="pub-entry__meta">
+                        Journal of Applied Microbiology <span>·</span> 2024 <span>·</span> <a href="#" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-border);">DOI ↗</a>
                     </div>
-                    <!-- FastAPI -->
-                    <div class="skill-tag">
-                        <i class="fa-solid fa-bolt"></i>
-                        <span>FastAPI</span>
+                </div>
+
+                <div class="pub-entry">
+                    <div class="pub-entry__title">
+                        Machine learning approaches for prediction of antimicrobial peptide activity from sequence data
                     </div>
-                    <!-- Figma -->
-                    <div class="skill-tag">
-                        <i class="fa-brands fa-figma"></i>
-                        <span>Figma</span>
+                    <div class="pub-entry__meta">
+                        Computational Biology and Chemistry <span>·</span> 2023 <span>·</span> <a href="#" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-border);">DOI ↗</a>
                     </div>
-                    <!-- Git -->
-                    <div class="skill-tag">
-                        <i class="fa-brands fa-git-alt"></i>
-                        <span>Git</span>
+                </div>
+
+                <div class="pub-entry">
+                    <div class="pub-entry__title">
+                        Automated pipeline for next-generation sequencing quality control and variant annotation
                     </div>
-                    <!-- Hadoop -->
-                    <div class="skill-tag">
-                        <i class="fa-solid fa-database"></i>
-                        <span>Hadoop</span>
+                    <div class="pub-entry__meta">
+                        Bioinformatics Advances <span>·</span> 2022 <span>·</span> <a href="#" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-border);">DOI ↗</a>
                     </div>
-                    <!-- HTML -->
-                    <div class="skill-tag">
-                        <i class="fa-brands fa-html5"></i>
-                        <span>HTML</span>
+                </div>
+
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 20px; font-style: italic;">
+                    Note: These are placeholder titles. Replace with your actual publications.
+                </p>
+            </section>
+
+            <!-- ── 03 PROJECTS ── -->
+            <section id="projects" class="section">
+                <div class="section__header">
+                    <span class="section__number">03</span>
+                    <h2 class="section__title">Projects</h2>
+                    <div class="section__line"></div>
+                </div>
+
+                <div class="exp-card">
+                    <div class="exp-card__period">2024 — Present</div>
+                    <div>
+                        <div class="exp-card__title">Genomic Analysis Pipeline ↗</div>
+                        <div class="exp-card__desc">
+                            Automated pipeline for NGS data processing that reduced manual analysis time from 4+ hours to under 20 minutes. Handles quality control, alignment, variant calling, and visualization in a reproducible workflow.
+                        </div>
+                        <div class="exp-card__subtitle" style="font-size: 12px; font-family: var(--font-mono); color: var(--text-muted);">
+                            Decision: Snakemake over Airflow — bioinformatics workflows are static DAGs
+                        </div>
+                        <div class="exp-card__tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Snakemake</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">PostgreSQL</span>
+                        </div>
                     </div>
-                    <!-- JavaScript -->
-                    <div class="skill-tag">
-                        <i class="fa-brands fa-js"></i>
-                        <span>JavaScript</span>
+                </div>
+
+                <div class="exp-card">
+                    <div class="exp-card__period">2023 — 2024</div>
+                    <div>
+                        <div class="exp-card__title">Lab Data Management System ↗</div>
+                        <div class="exp-card__desc">
+                            Full-stack application for research teams to manage experimental data, track samples, and generate standardized reports. Replaced a fragmented spreadsheet workflow used by 3 research groups.
+                        </div>
+                        <div class="exp-card__subtitle" style="font-size: 12px; font-family: var(--font-mono); color: var(--text-muted);">
+                            Decision: FastAPI + React over Django monolith — needed real-time updates for lab status
+                        </div>
+                        <div class="exp-card__tags">
+                            <span class="tag">FastAPI</span>
+                            <span class="tag">React</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">Docker</span>
+                        </div>
                     </div>
-                    <!-- Jupyter -->
-                    <div class="skill-tag">
-                        <i class="fa-solid fa-book-open"></i>
-                        <span>Jupyter</span>
+                </div>
+
+                <div class="exp-card">
+                    <div class="exp-card__period">2022 — 2023</div>
+                    <div>
+                        <div class="exp-card__title">Antimicrobial Peptide Predictor ↗</div>
+                        <div class="exp-card__desc">
+                            ML model trained on sequence data to predict antimicrobial activity of novel peptides. Achieved 89% accuracy on held-out test set. Deployed as an internal API consumed by the research team.
+                        </div>
+                        <div class="exp-card__subtitle" style="font-size: 12px; font-family: var(--font-mono); color: var(--text-muted);">
+                            Decision: PyTorch over scikit-learn — needed custom loss function for imbalanced classes
+                        </div>
+                        <div class="exp-card__tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">PyTorch</span>
+                            <span class="tag">FastAPI</span>
+                            <span class="tag">Docker</span>
+                        </div>
                     </div>
-                    <!-- MySQL -->
-                    <div class="skill-tag">
-                        <i class="fa-solid fa-database"></i>
-                        <span>MySQL</span>
+                </div>
+
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 20px; font-style: italic;">
+                    Note: These are placeholder projects. Replace with your actual work.
+                </p>
+            </section>
+
+            <!-- ── 04 STACK ── -->
+            <section id="stack" class="section">
+                <div class="section__header">
+                    <span class="section__number">04</span>
+                    <h2 class="section__title">Stack</h2>
+                    <div class="section__line"></div>
+                </div>
+
+                <div class="stack-group">
+                    <div class="stack-group__label">Core</div>
+                    <div class="stack-group__items">
+                        <div class="stack-tag">
+                            <i class="fa-brands fa-python"></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="stack-tag">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>FastAPI</span>
+                        </div>
+                        <div class="stack-tag">
+                            <i class="fa-solid fa-code"></i>
+                            <span>Django</span>
+                        </div>
+                        <div class="stack-tag">
+                            <i class="fa-brands fa-docker"></i>
+                            <span>Docker</span>
+                        </div>
+                        <div class="stack-tag">
+                            <i class="fa-solid fa-database"></i>
+                            <span>PostgreSQL</span>
+                        </div>
                     </div>
-                    <!-- Nginx -->
-                    <div class="skill-tag">
-                        <i class="fa-solid fa-server"></i>
-                        <span>Nginx</span>
-                    </div>
-                    <!-- numpy -->
-                    <div class="skill-tag">
-                        <i class="fa-solid fa-calculator"></i>
-                        <span>numpy</span>
-                    </div>
-                    <!-- pandas -->
-                    <div class="skill-tag">
-                        <i class="fa-solid fa-table"></i>
-                        <span>pandas</span>
-                    </div>
-                    <!-- PostgreSQL -->
-                    <div class="skill-tag">
-                        <i class="fa-solid fa-database"></i>
-                        <span>PostgreSQL</span>
-                    </div>
-                    <!-- Python -->
-                    <div class="skill-tag">
-                        <i class="fa-brands fa-python"></i>
-                        <span>Python</span>
-                    </div>
-                    <!-- PyTorch -->
-                    <div class="skill-tag">
-                        <i class="fa-solid fa-fire"></i>
-                        <span>PyTorch</span>
-                    </div>
-                    <!-- React -->
-                    <div class="skill-tag">
-                        <i class="fa-brands fa-react"></i>
-                        <span>React</span>
-                    </div>
-                    <!-- Spark -->
-                    <div class="skill-tag">
-                        <i class="fa-solid fa-bolt"></i>
-                        <span>Spark</span>
-                    </div>
-                    <!-- TensorFlow -->
-                    <div class="skill-tag">
-                        <i class="fa-solid fa-brain"></i>
-                        <span>TensorFlow</span>
-                    </div>
-                    <!-- VS Code -->
-                    <div class="skill-tag">
-                        <i class="fa-solid fa-code"></i>
-                        <span>VS Code</span>
-                    </div>
-                    <!-- WordPress -->
-                    <div class="skill-tag">
-                        <i class="fa-brands fa-wordpress"></i>
-                        <span>WordPress</span>
+                </div>
+
+                <div class="stack-group">
+                    <div class="stack-group__label">Also work with</div>
+                    <div class="stack-group__items">
+                        <div class="stack-tag">
+                            <i class="fa-brands fa-react"></i>
+                            <span>React</span>
+                        </div>
+                        <div class="stack-tag">
+                            <i class="fa-solid fa-fire"></i>
+                            <span>PyTorch</span>
+                        </div>
+                        <div class="stack-tag">
+                            <i class="fa-brands fa-git-alt"></i>
+                            <span>Git</span>
+                        </div>
                     </div>
                 </div>
             </section>
-            
-            <section id="contacto" class="section">
-                <h2 class="section-title">Contact</h2>
-                
-                <div class="contact-section">                    
-                    <a href="mailto:tu@email.com" class="email-link">Send message</a>
+
+            <!-- ── 05 CONTACT ── -->
+            <section id="contact" class="section">
+                <div class="section__header">
+                    <span class="section__number">05</span>
+                    <h2 class="section__title">Contact</h2>
+                    <div class="section__line"></div>
                 </div>
+
+                <p class="contact-text">
+                    I'm open to conversations about interesting problems at the intersection of biology, data, and software. Whether it's a role, a collaboration, or just a question — feel free to reach out.
+                </p>
+
+                <a href="mailto:freddy.asenjo.dev@gmail.com" class="contact-btn">
+                    Send a message
+                </a>
             </section>
-            
+
+            <!-- ── FOOTER ── -->
             <footer class="footer">
-                <div>
-                    Designed and built by <a href="#">Freddy Asenjo</a>
-                </div>
-                <div>
-                    &copy; 2025
-                </div>
+                <p>
+                    Designed & built by <a href="https://github.com/ZnaeW">Freddy</a>
+                </p>
+                <p style="margin-top: 4px;">© <span id="year"></span></p>
             </footer>
-        </div>
+        </main>
     </div>
 
-    <script src="js/main.js"></script>
+    <script>
+        // ─── Dynamic year ───
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // ─── Smooth scroll ───
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const id = link.getAttribute('href');
+                if (id !== '#') {
+                    const el = document.querySelector(id);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ─── Cursor Spotlight ───
+        const spotlight = document.getElementById('spotlight');
+        let isDesktop = window.innerWidth > 768;
+
+        if (isDesktop) {
+            document.addEventListener('mousemove', e => {
+                spotlight.classList.add('active');
+                spotlight.style.setProperty('--mouse-x', e.clientX + 'px');
+                spotlight.style.setProperty('--mouse-y', e.clientY + 'px');
+            });
+
+            document.addEventListener('mouseleave', () => {
+                spotlight.classList.remove('active');
+            });
+        }
+
+        // ─── Scroll Spy ───
+        const sections = document.querySelectorAll('.section');
+        const navItems = document.querySelectorAll('.nav__item');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    navItems.forEach(item => {
+                        item.classList.toggle('active', item.dataset.section === id);
+                    });
+                }
+            });
+        }, {
+            rootMargin: '-20% 0px -60% 0px',
+            threshold: 0
+        });
+
+        sections.forEach(section => observer.observe(section));
+
+        // Fallback: activate Contact when scrolled to bottom
+        window.addEventListener('scroll', () => {
+            const scrollBottom = window.innerHeight + window.scrollY;
+            const docHeight = document.documentElement.scrollHeight;
+            if (docHeight - scrollBottom < 80) {
+                navItems.forEach(item => {
+                    item.classList.toggle('active', item.dataset.section === 'contact');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
