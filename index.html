@@ -613,7 +613,7 @@
                 <a href="#projects" class="nav__item" data-section="projects">
                     <span class="nav__number">03</span>
                     <span class="nav__line"></span>
-                    <span class="nav__label">Projects</span>
+                    <span class="nav__label">Experience</span>
                 </a>
                 <a href="#stack" class="nav__item" data-section="stack">
                     <span class="nav__number">04</span>
@@ -655,7 +655,7 @@
                     Today I work as a backend and full-stack developer, building APIs, data processing services, and the infrastructure that connects them. My background in biotech gives me a different lens: I think about problems from the domain first, then choose the right tools — not the other way around.
                 </p>
                 <p>
-                    I've published research in <a href="#">bioinformatics</a> and continue to believe that the best engineering comes from deeply understanding the problem, not just the framework.
+                    I've published research in <a href="#research">bioinformatics and comparative genomics</a>, including first-author work on bacterial genome assembly. I continue to believe that the best engineering comes from deeply understanding the problem, not just the framework.
                 </p>
             </section>
 
@@ -668,109 +668,170 @@
                 </div>
 
                 <p style="margin-bottom: 28px;">
-                    Peer-reviewed publications from my work in biotechnology and bioinformatics.
+                    Peer-reviewed publications from my work in biotechnology, genomics, and bioinformatics. My research bridges wet-lab biology with computational analysis — the same mindset I bring to software engineering.
                 </p>
 
-                <div class="pub-entry">
-                    <div class="pub-entry__title">
-                        Genomic characterization and comparative analysis of biosynthetic gene clusters in actinobacteria
+                <!-- FEATURED: First-author paper — uses exp-card for prominence -->
+                <div class="exp-card">
+                    <div class="exp-card__period">
+                        PeerJ · 2016<br>
+                        <span style="color: var(--accent); font-size: 11px; font-weight: 500;">First Author</span>
                     </div>
-                    <div class="pub-entry__meta">
-                        Journal of Applied Microbiology <span>·</span> 2024 <span>·</span> <a href="#" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-border);">DOI ↗</a>
+                    <div>
+                        <a href="https://peerj.com/articles/1950/" target="_blank" style="text-decoration: none; border: none;">
+                            <div class="exp-card__title">
+                                Genome sequencing and analysis of the first complete genome of <em>Lactobacillus kunkeei</em> strain MP2, an <em>Apis mellifera</em> gut isolate ↗
+                            </div>
+                        </a>
+                        <div class="exp-card__desc">
+                            Sequenced and assembled the first complete genome of <em>L. kunkeei</em> MP2 (1.6M nt) from Chilean honeybee gut microbiota. Built a full bioinformatics pipeline from raw PacBio reads to functional annotation. Pangenome analysis across 17 strains identified 113 unique genes linked to phage insertions and environmental adaptation.
+                        </div>
+                        <div class="exp-card__subtitle" style="font-size: 12px; font-family: var(--font-mono); color: var(--text-muted);">
+                            Pipeline: PacBio SMRT → Celera assembly → Prokka → EggNOG → Roary pangenomics
+                        </div>
+                        <div class="exp-card__tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Genome Assembly</span>
+                            <span class="tag">Prokka</span>
+                            <span class="tag">Roary</span>
+                            <span class="tag">PacBio</span>
+                            <span class="tag">Pangenomics</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="pub-entry">
-                    <div class="pub-entry__title">
-                        Machine learning approaches for prediction of antimicrobial peptide activity from sequence data
+                <!-- Vibrio genome — Co-author, genome assembly role -->
+                <div class="exp-card">
+                    <div class="exp-card__period">
+                        Genome Announc.<br>2015<br>
+                        <span style="color: var(--text-secondary); font-size: 11px;">Co-author</span>
                     </div>
-                    <div class="pub-entry__meta">
-                        Computational Biology and Chemistry <span>·</span> 2023 <span>·</span> <a href="#" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-border);">DOI ↗</a>
+                    <div>
+                        <a href="https://journals.asm.org/doi/10.1128/genomea.00745-15" target="_blank" style="text-decoration: none; border: none;">
+                            <div class="exp-card__title">
+                                Genome Sequence of <em>Vibrio</em> VPAP30, Isolated from an Episode of Massive Mortality of Reared Larvae of the Scallop <em>Argopecten purpuratus</em> ↗
+                            </div>
+                        </a>
+                        <div class="exp-card__desc">
+                            Draft genome assembly (5.2 Mb, 63 contigs) of the pathogenic <em>Vibrio</em> strain responsible for a complete larval collapse in a Chilean scallop hatchery. Multi-institutional collaboration between Universidad de Chile, UCN, and Universidad Mayor. Contributed from the Center for Genomics and Bioinformatics.
+                        </div>
+                        <div class="exp-card__tags">
+                            <span class="tag">Illumina MiSeq</span>
+                            <span class="tag">SPAdes</span>
+                            <span class="tag">Prokka</span>
+                            <span class="tag">Trimmomatic</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="pub-entry">
-                    <div class="pub-entry__title">
-                        Automated pipeline for next-generation sequencing quality control and variant annotation
+                <!-- MetaSUB — Consortium member, Cell journal -->
+                <div class="exp-card">
+                    <div class="exp-card__period">
+                        Cell · 2021<br>
+                        <span style="color: var(--text-secondary); font-size: 11px;">Consortium</span>
                     </div>
-                    <div class="pub-entry__meta">
-                        Bioinformatics Advances <span>·</span> 2022 <span>·</span> <a href="#" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-border);">DOI ↗</a>
+                    <div>
+                        <a href="https://www.cell.com/cell/fulltext/S0092-8674(21)00585-7" target="_blank" style="text-decoration: none; border: none;">
+                            <div class="exp-card__title">
+                                A global metagenomic map of urban microbiomes and antimicrobial resistance ↗
+                            </div>
+                        </a>
+                        <div class="exp-card__desc">
+                            The first systematic worldwide catalog of urban microbial ecosystems. The MetaSUB Consortium collected 4,728 metagenomic samples from mass-transit systems across 60 cities over 3 years, identifying 4,246 known species and over 10,000 novel viruses. Participated in standardized environmental sampling in Santiago, Chile.
+                        </div>
+                        <div class="exp-card__tags">
+                            <span class="tag">Metagenomics</span>
+                            <span class="tag">Environmental Sampling</span>
+                            <span class="tag">Illumina NGS</span>
+                            <span class="tag">AMR Profiling</span>
+                        </div>
                     </div>
                 </div>
-
-                <p style="font-size: 13px; color: var(--text-muted); margin-top: 20px; font-style: italic;">
-                    Note: These are placeholder titles. Replace with your actual publications.
-                </p>
             </section>
 
-            <!-- ── 03 PROJECTS ── -->
+            <!-- ── 03 EXPERIENCE ── -->
             <section id="projects" class="section">
                 <div class="section__header">
                     <span class="section__number">03</span>
-                    <h2 class="section__title">Projects</h2>
+                    <h2 class="section__title">Experience</h2>
                     <div class="section__line"></div>
                 </div>
 
                 <div class="exp-card">
-                    <div class="exp-card__period">2024 — Present</div>
+                    <div class="exp-card__period">2017 — Present</div>
                     <div>
-                        <div class="exp-card__title">Genomic Analysis Pipeline ↗</div>
+                        <div class="exp-card__title">Backend & Full-Stack Developer · Industry</div>
                         <div class="exp-card__desc">
-                            Automated pipeline for NGS data processing that reduced manual analysis time from 4+ hours to under 20 minutes. Handles quality control, alignment, variant calling, and visualization in a reproducible workflow.
-                        </div>
-                        <div class="exp-card__subtitle" style="font-size: 12px; font-family: var(--font-mono); color: var(--text-muted);">
-                            Decision: Snakemake over Airflow — bioinformatics workflows are static DAGs
+                            Building APIs, data processing services, and web applications for private companies. From internal tools to production systems — designing backend architecture, integrating third-party services, and shipping reliable software.
                         </div>
                         <div class="exp-card__tags">
                             <span class="tag">Python</span>
-                            <span class="tag">Snakemake</span>
-                            <span class="tag">Docker</span>
-                            <span class="tag">PostgreSQL</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="exp-card">
-                    <div class="exp-card__period">2023 — 2024</div>
-                    <div>
-                        <div class="exp-card__title">Lab Data Management System ↗</div>
-                        <div class="exp-card__desc">
-                            Full-stack application for research teams to manage experimental data, track samples, and generate standardized reports. Replaced a fragmented spreadsheet workflow used by 3 research groups.
-                        </div>
-                        <div class="exp-card__subtitle" style="font-size: 12px; font-family: var(--font-mono); color: var(--text-muted);">
-                            Decision: FastAPI + React over Django monolith — needed real-time updates for lab status
-                        </div>
-                        <div class="exp-card__tags">
                             <span class="tag">FastAPI</span>
+                            <span class="tag">Django</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">Docker</span>
                             <span class="tag">React</span>
-                            <span class="tag">PostgreSQL</span>
-                            <span class="tag">Docker</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="exp-card">
-                    <div class="exp-card__period">2022 — 2023</div>
+                    <div class="exp-card__period">2015 — 2016</div>
                     <div>
-                        <div class="exp-card__title">Antimicrobial Peptide Predictor ↗</div>
+                        <div class="exp-card__title">Complete Genome Assembly & Comparative Genomics Pipeline</div>
                         <div class="exp-card__desc">
-                            ML model trained on sequence data to predict antimicrobial activity of novel peptides. Achieved 89% accuracy on held-out test set. Deployed as an internal API consumed by the research team.
+                            End-to-end bioinformatics pipeline for sequencing, assembling, and analyzing the first complete genome of <em>L. kunkeei</em> MP2. From raw PacBio long-reads to a fully annotated circular chromosome. Pangenome comparison against 16 strains revealed 113 unique genes and phage-mediated adaptation mechanisms. Published as first author.
                         </div>
                         <div class="exp-card__subtitle" style="font-size: 12px; font-family: var(--font-mono); color: var(--text-muted);">
-                            Decision: PyTorch over scikit-learn — needed custom loss function for imbalanced classes
+                            Centro de Genética y Genómica · Clinica Alemana Universidad del Desarrollo
                         </div>
                         <div class="exp-card__tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">PyTorch</span>
-                            <span class="tag">FastAPI</span>
-                            <span class="tag">Docker</span>
+                            <span class="tag">PacBio SMRT</span>
+                            <span class="tag">Celera</span>
+                            <span class="tag">Prokka</span>
+                            <span class="tag">Roary</span>
+                            <span class="tag">EggNOG</span>
+                            <span class="tag">PHAST</span>
                         </div>
                     </div>
                 </div>
 
-                <p style="font-size: 13px; color: var(--text-muted); margin-top: 20px; font-style: italic;">
-                    Note: These are placeholder projects. Replace with your actual work.
-                </p>
+                <div class="exp-card">
+                    <div class="exp-card__period">2014 — 2015</div>
+                    <div>
+                        <div class="exp-card__title">Pathogen Genome Sequencing · Chilean Aquaculture</div>
+                        <div class="exp-card__desc">
+                            Genome assembly and bioinformatic analysis of <em>Vibrio</em> VPAP30, the pathogen behind mass larval mortality events in Chilean scallop hatcheries. Collaborated across three institutions to deliver a 5.2 Mb draft genome that supported downstream pathogenicity studies.
+                        </div>
+                        <div class="exp-card__subtitle" style="font-size: 12px; font-family: var(--font-mono); color: var(--text-muted);">
+                            Centro de Genómica y Bioinformática · Universidad Mayor
+                        </div>
+                        <div class="exp-card__tags">
+                            <span class="tag">Illumina MiSeq</span>
+                            <span class="tag">SPAdes</span>
+                            <span class="tag">Prokka</span>
+                            <span class="tag">Trimmomatic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exp-card">
+                    <div class="exp-card__period">2016 — 2017</div>
+                    <div>
+                        <div class="exp-card__title">Urban Metagenomics Sampling · MetaSUB Consortium</div>
+                        <div class="exp-card__desc">
+                            Part of the international MetaSUB initiative that built the first global atlas of urban microbiomes, published in Cell. Executed standardized environmental sampling protocols across Santiago's transit system, contributing to the consortium's dataset of 4,728 samples from 60 cities.
+                        </div>
+                        <div class="exp-card__subtitle" style="font-size: 12px; font-family: var(--font-mono); color: var(--text-muted);">
+                            Center for Integrative Biology · Universidad Mayor
+                        </div>
+                        <div class="exp-card__tags">
+                            <span class="tag">Environmental Sampling</span>
+                            <span class="tag">Metagenomics</span>
+                            <span class="tag">Standardized Protocols</span>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- ── 04 STACK ── -->
@@ -804,6 +865,14 @@
                             <i class="fa-solid fa-database"></i>
                             <span>PostgreSQL</span>
                         </div>
+                        <div class="stack-tag">
+                            <i class="fa-solid fa-terminal"></i>
+                            <span>Bash / Linux</span>
+                        </div>
+                        <div class="stack-tag">
+                            <i class="fa-brands fa-git-alt"></i>
+                            <span>Git</span>
+                        </div>
                     </div>
                 </div>
 
@@ -819,8 +888,54 @@
                             <span>PyTorch</span>
                         </div>
                         <div class="stack-tag">
-                            <i class="fa-brands fa-git-alt"></i>
-                            <span>Git</span>
+                            <i class="fa-solid fa-chart-column"></i>
+                            <span>Pandas</span>
+                        </div>
+                        <div class="stack-tag">
+                            <i class="fa-brands fa-js"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="stack-tag">
+                            <i class="fa-brands fa-html5"></i>
+                            <span>HTML / CSS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-group">
+                    <div class="stack-group__label">Bioinformatics & Data</div>
+                    <div class="stack-group__items">
+                        <div class="stack-tag">
+                            <i class="fa-solid fa-dna"></i>
+                            <span>NGS Pipelines</span>
+                        </div>
+                        <div class="stack-tag">
+                            <i class="fa-solid fa-microscope"></i>
+                            <span>Genome Assembly</span>
+                        </div>
+                        <div class="stack-tag">
+                            <i class="fa-solid fa-diagram-project"></i>
+                            <span>Pangenomics</span>
+                        </div>
+                        <div class="stack-tag">
+                            <i class="fa-solid fa-bacterium"></i>
+                            <span>Metagenomics</span>
+                        </div>
+                        <div class="stack-tag">
+                            <i class="fa-solid fa-gears"></i>
+                            <span>Prokka</span>
+                        </div>
+                        <div class="stack-tag">
+                            <i class="fa-solid fa-gears"></i>
+                            <span>Roary</span>
+                        </div>
+                        <div class="stack-tag">
+                            <i class="fa-solid fa-gears"></i>
+                            <span>SPAdes</span>
+                        </div>
+                        <div class="stack-tag">
+                            <i class="fa-solid fa-vial"></i>
+                            <span>BLAST</span>
                         </div>
                     </div>
                 </div>
@@ -846,7 +961,7 @@
             <!-- ── FOOTER ── -->
             <footer class="footer">
                 <p>
-                    Designed & built by <a href="https://github.com/ZnaeW">Freddy</a>
+                    Designed & built by <a href="https://github.com/ZnaeW">Freddy</a> 🤙🏻
                 </p>
                 <p style="margin-top: 4px;">© <span id="year"></span></p>
             </footer>
