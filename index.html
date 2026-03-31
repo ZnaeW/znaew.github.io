@@ -3,581 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Freddy Asenjo | Biotechnology Engineer & Developer</title>
+    <title>Freddy Asenjo — Biotechnology Engineer & Developer</title>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* ─── VARIABLES ─── */
-        :root {
-            --bg-deep:        #0f0a1a;
-            --bg-surface:     #16112a;
-            --bg-elevated:    #1e1738;
-            --accent:         #a78bfa;
-            --accent-dim:     #6d5dab;
-            --accent-glow:    rgba(167, 139, 250, 0.08);
-            --accent-border:  rgba(167, 139, 250, 0.12);
-            --accent-hover:   rgba(167, 139, 250, 0.20);
-            --text-primary:   #eae6f2;
-            --text-secondary: #b0a9c0;
-            --text-muted:     #706a82;
-            --white-pure:     #ffffff;
 
-            --font-display: "Cormorant Garamond", "Georgia", serif;
-            --font-body:    "DM Sans", "Helvetica Neue", sans-serif;
-            --font-mono:    "JetBrains Mono", "SF Mono", monospace;
-
-            --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
-            --ease-smooth: cubic-bezier(0.645, 0.045, 0.355, 1);
-        }
-
-        /* ─── RESET ─── */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        html {
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            background: var(--bg-deep);
-            color: var(--text-secondary);
-            font-family: var(--font-body);
-            font-size: 16px;
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        /* ─── CURSOR SPOTLIGHT ─── */
-        .spotlight {
-            pointer-events: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: 1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            background: radial-gradient(
-                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-                rgba(167, 139, 250, 0.06),
-                transparent 40%
-            );
-        }
-        .spotlight.active { opacity: 1; }
-
-        /* ─── LAYOUT ─── */
-        .layout {
-            display: flex;
-            width: 100%;
-            min-height: 100vh;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* ─── LEFT COLUMN ─── */
-        .left-col {
-            position: fixed;
-            top: 0; left: 0;
-            width: 42%;
-            max-width: 520px;
-            height: 100vh;
-            padding: 80px 60px 60px 80px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .left-col__top { }
-
-        .identity__name {
-            font-family: var(--font-display);
-            font-size: 56px;
-            font-weight: 500;
-            font-style: normal;
-            color: var(--text-primary);
-            line-height: 1.05;
-            letter-spacing: -0.01em;
-            margin-bottom: 8px;
-        }
-
-        .identity__role {
-            font-family: var(--font-body);
-            font-size: 17px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-        }
-
-        .identity__tagline {
-            font-family: var(--font-body);
-            font-size: 15px;
-            font-weight: 300;
-            color: var(--text-muted);
-            line-height: 1.6;
-            max-width: 300px;
-        }
-
-        /* ─── PROFILE PHOTO ─── */
-        .identity__photo {
-            margin: 22px 0 24px;
-        }
-
-        .identity__photo img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: 50% 30%;
-            border: 2px solid var(--accent-border);
-            transition: border-color 0.3s var(--ease-smooth);
-        }
-
-        .identity__photo img:hover {
-            border-color: var(--accent-dim);
-        }
-
-        .identity__photo-placeholder {
-            width: 88px;
-            height: 88px;
-            border-radius: 50%;
-            background: var(--bg-surface);
-            border: 2px solid var(--accent-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 28px;
-            transition: border-color 0.3s var(--ease-smooth);
-        }
-
-        .identity__photo-placeholder:hover {
-            border-color: var(--accent-dim);
-        }
-
-        /* ─── NAVIGATION ─── */
-        .nav {
-            margin-top: auto;
-            padding-bottom: 40px;
-        }
-
-        .nav__item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 10px 0;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s var(--ease-smooth);
-        }
-
-        .nav__number {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            font-weight: 400;
-            color: var(--text-muted);
-            letter-spacing: 0.05em;
-            min-width: 20px;
-            transition: color 0.3s var(--ease-smooth);
-        }
-
-        .nav__line {
-            width: 28px;
-            height: 1px;
-            background: var(--text-muted);
-            transition: all 0.3s var(--ease-smooth);
-        }
-
-        .nav__label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            font-weight: 400;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            transition: color 0.3s var(--ease-smooth);
-        }
-
-        .nav__item:hover .nav__line,
-        .nav__item.active .nav__line {
-            width: 52px;
-            background: var(--text-primary);
-        }
-
-        .nav__item:hover .nav__label,
-        .nav__item.active .nav__label,
-        .nav__item:hover .nav__number,
-        .nav__item.active .nav__number {
-            color: var(--text-primary);
-        }
-
-        /* ─── SOCIAL ─── */
-        .social {
-            display: flex;
-            gap: 22px;
-            padding-bottom: 10px;
-        }
-
-        .social__link {
-            color: var(--text-muted);
-            font-size: 18px;
-            text-decoration: none;
-            transition: all 0.25s var(--ease-smooth);
-            display: inline-flex;
-        }
-
-        .social__link:hover {
-            color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        /* ─── RIGHT COLUMN ─── */
-        .right-col {
-            margin-left: 42%;
-            width: 58%;
-            padding: 80px 80px 80px 60px;
-            max-width: 720px;
-        }
-
-        /* ─── SECTIONS ─── */
-        .section {
-            margin-bottom: 100px;
-        }
-
-        .section:last-of-type {
-            margin-bottom: 60px;
-        }
-
-        .section__header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 40px;
-        }
-
-        .section__number {
-            font-family: var(--font-mono);
-            font-size: 13px;
-            font-weight: 300;
-            color: var(--accent-dim);
-            letter-spacing: 0.05em;
-        }
-
-        .section__title {
-            font-family: var(--font-display);
-            font-size: 32px;
-            font-weight: 500;
-            color: var(--text-primary);
-            line-height: 1;
-        }
-
-        .section__line {
-            flex: 1;
-            height: 1px;
-            background: var(--accent-border);
-        }
-
-        .section p {
-            margin-bottom: 18px;
-            font-size: 15px;
-            line-height: 1.75;
-        }
-
-        .section p a {
-            color: var(--accent);
-            text-decoration: none;
-            border-bottom: 1px solid var(--accent-border);
-            transition: border-color 0.2s ease;
-        }
-
-        .section p a:hover {
-            border-color: var(--accent);
-        }
-
-        /* ─── EXPERIENCE CARDS ─── */
-        .exp-card {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 24px;
-            padding: 24px;
-            margin: 0 -24px 8px -24px;
-            border-radius: 8px;
-            border: 1px solid transparent;
-            transition: all 0.25s var(--ease-smooth);
-        }
-
-        .exp-card:hover {
-            background: var(--bg-surface);
-            border-color: var(--accent-border);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(15, 10, 26, 0.5);
-        }
-
-        .exp-card__period {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--text-muted);
-            letter-spacing: 0.03em;
-            padding-top: 4px;
-            line-height: 1.5;
-        }
-
-        .exp-card__title {
-            font-family: var(--font-body);
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--text-primary);
-            margin-bottom: 4px;
-            transition: color 0.2s ease;
-        }
-
-        .exp-card:hover .exp-card__title {
-            color: var(--accent);
-        }
-
-        .exp-card__subtitle {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-        }
-
-        .exp-card__desc {
-            font-size: 14px;
-            line-height: 1.65;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-        }
-
-        .exp-card__tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
-        .tag {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            font-weight: 400;
-            padding: 4px 10px;
-            border-radius: 999px;
-            background: rgba(167, 139, 250, 0.08);
-            color: var(--accent);
-            white-space: nowrap;
-        }
-
-        /* ─── RESEARCH / PUBLICATIONS ─── */
-        .pub-entry {
-            padding: 20px 24px;
-            margin: 0 -24px 4px -24px;
-            border-radius: 8px;
-            border: 1px solid transparent;
-            transition: all 0.25s var(--ease-smooth);
-        }
-
-        .pub-entry:hover {
-            background: var(--bg-surface);
-            border-color: var(--accent-border);
-        }
-
-        .pub-entry__title {
-            font-family: var(--font-body);
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-            line-height: 1.4;
-            transition: color 0.2s ease;
-        }
-
-        .pub-entry:hover .pub-entry__title {
-            color: var(--accent);
-        }
-
-        .pub-entry__meta {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        .pub-entry__meta span {
-            opacity: 0.4;
-            margin: 0 6px;
-        }
-
-        /* ─── STACK SECTION ─── */
-        .stack-group {
-            margin-bottom: 28px;
-        }
-
-        .stack-group__label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            font-weight: 400;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 14px;
-        }
-
-        .stack-group__items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .stack-tag {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            font-weight: 400;
-            padding: 7px 14px;
-            border-radius: 6px;
-            border: 1px solid var(--accent-border);
-            color: var(--text-secondary);
-            background: transparent;
-            transition: all 0.25s var(--ease-smooth);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .stack-tag i {
-            font-size: 14px;
-            opacity: 0.5;
-            transition: opacity 0.25s ease;
-        }
-
-        .stack-tag:hover {
-            border-color: var(--accent-hover);
-            color: var(--accent);
-            background: var(--accent-glow);
-            transform: translateY(-1px);
-        }
-
-        .stack-tag:hover i {
-            opacity: 1;
-            color: var(--accent);
-        }
-
-        /* ─── CONTACT ─── */
-        .contact-text {
-            font-size: 15px;
-            line-height: 1.75;
-            margin-bottom: 32px;
-            max-width: 480px;
-        }
-
-        .contact-btn {
-            display: inline-block;
-            font-family: var(--font-mono);
-            font-size: 13px;
-            font-weight: 400;
-            padding: 14px 28px;
-            border: 1px solid var(--accent);
-            border-radius: 4px;
-            color: var(--accent);
-            text-decoration: none;
-            transition: all 0.25s var(--ease-smooth);
-            letter-spacing: 0.03em;
-        }
-
-        .contact-btn:hover {
-            background: var(--accent-glow);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(167, 139, 250, 0.12);
-        }
-
-        /* ─── FOOTER ─── */
-        .footer {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--text-muted);
-            line-height: 1.6;
-            text-align: left;
-            padding-top: 60px;
-            border-top: 1px solid var(--accent-border);
-        }
-
-        .footer a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .footer a:hover {
-            color: var(--accent);
-        }
-
-        /* ─── SCROLL-SPY INDICATOR (left col) ─── */
-        .nav__item.active .nav__number { color: var(--accent); }
-
-        /* ─── GRAIN OVERLAY (subtle texture) ─── */
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.025;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            background-repeat: repeat;
-            background-size: 256px 256px;
-        }
-
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 1100px) {
-            .left-col { padding: 60px 40px 40px 60px; }
-            .right-col { padding: 80px 60px 80px 40px; }
-            .identity__name { font-size: 46px; }
-        }
-
-        @media (max-width: 768px) {
-            .layout { flex-direction: column; }
-            .spotlight { display: none; }
-
-            .left-col {
-                position: relative;
-                width: 100%;
-                max-width: 100%;
-                height: auto;
-                padding: 50px 28px 30px;
-                align-items: center;
-                text-align: center;
-            }
-
-            .identity__tagline { max-width: 100%; }
-            .identity__photo { display: flex; justify-content: center; }
-
-            .nav { margin-top: 36px; padding-bottom: 20px; }
-
-            .right-col {
-                margin-left: 0;
-                width: 100%;
-                max-width: 100%;
-                padding: 30px 28px 60px;
-            }
-
-            .section { margin-bottom: 80px; }
-
-            .exp-card {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-        }
-
-        /* ─── FADE-IN ON LOAD ─── */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(16px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .left-col__top   { animation: fadeUp 0.6s var(--ease-out) 0.1s both; }
-        .nav              { animation: fadeUp 0.6s var(--ease-out) 0.25s both; }
-        .social           { animation: fadeUp 0.6s var(--ease-out) 0.35s both; }
-        .section          { animation: fadeUp 0.5s var(--ease-out) 0.3s both; }
-    </style>
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Cursor Spotlight -->
@@ -589,7 +26,7 @@
             <div class="left-col__top">
                 <h1 class="identity__name">Freddy Asenjo</h1>
                 <h2 class="identity__role">Biotechnology Engineer & Developer</h2>
-                
+
                 <div class="identity__photo">
                     <img src="img/profile.jpg" alt="Freddy Asenjo" />
                 </div>
@@ -613,7 +50,7 @@
                 <a href="#projects" class="nav__item" data-section="projects">
                     <span class="nav__number">03</span>
                     <span class="nav__line"></span>
-                    <span class="nav__label">Experience</span>
+                    <span class="nav__label">Projects</span>
                 </a>
                 <a href="#stack" class="nav__item" data-section="stack">
                     <span class="nav__number">04</span>
@@ -649,13 +86,13 @@
                 </div>
 
                 <p>
-                    I'm a Biotechnology Engineer who found his way into software through the lab. It started with Python scripts to avoid repeating manual analysis, and turned into building complete systems. My path has taken me from genomic data pipelines to full-stack web applications.
+                    I'm a Biotechnology Engineer who found his way into software through the lab. It started with Python scripts to avoid repeating manual analysis — and turned into building complete systems. My path has taken me from genomic data pipelines to full-stack web applications.
                 </p>
                 <p>
-                    Today I work as a backend and full-stack developer, building APIs, data processing services, and the infrastructure that connects them. My background in biotech gives me a different lens: I think about problems from the domain first, then choose the right tools.
+                    Today I work as a backend and full-stack developer, building APIs, data processing services, and the infrastructure that connects them. My background in biotech gives me a different lens: I think about problems from the domain first, then choose the right tools — not the other way around.
                 </p>
                 <p>
-                    I've published research in <a href="#research">bioinformatics and comparative genomics</a>, including first-author work on bacterial genome assembly. I continue to believe that the best engineering comes from deeply understanding the problem, not just the framework.
+                    I've published research in <a href="#">bioinformatics</a> and continue to believe that the best engineering comes from deeply understanding the problem, not just the framework.
                 </p>
             </section>
 
@@ -667,171 +104,115 @@
                     <div class="section__line"></div>
                 </div>
 
-                <p style="margin-bottom: 28px;">
-                    Peer-reviewed publications from my work in biotechnology, genomics, and bioinformatics. My research bridges wet-lab biology with computational analysis, the same mindset I bring to software engineering.
+                <p class="section__intro">
+                    Peer-reviewed publications from my work in biotechnology and bioinformatics.
                 </p>
 
-                <!-- FEATURED: First-author paper — uses exp-card for prominence -->
-                <div class="exp-card">
-                    <div class="exp-card__period">
-                        PeerJ · 2016<br>
-                        <span style="color: var(--accent); font-size: 11px; font-weight: 500;">First Author</span>
+                <div class="pub-entry">
+                    <div class="pub-entry__title">
+                        Genomic characterization and comparative analysis of biosynthetic gene clusters in actinobacteria
                     </div>
-                    <div>
-                        <a href="https://peerj.com/articles/1950/" target="_blank" style="text-decoration: none; border: none;">
-                            <div class="exp-card__title">
-                                Genome sequencing and analysis of the first complete genome of <em>Lactobacillus kunkeei</em> strain MP2, an <em>Apis mellifera</em> gut isolate ↗
-                            </div>
-                        </a>
-                        <div class="exp-card__desc">
-                            Sequenced and assembled the first complete genome of <em>L. kunkeei</em> MP2 (1.6M nt) from Chilean honeybee gut microbiota. Built a full bioinformatics pipeline from raw PacBio reads to functional annotation. Pangenome analysis across 17 strains identified 113 unique genes linked to phage insertions and environmental adaptation.
-                        </div>
-                        <div class="exp-card__subtitle" style="font-size: 12px; font-family: var(--font-mono); color: var(--text-muted);">
-                            Pipeline: PacBio SMRT → Celera assembly → Prokka → EggNOG → Roary pangenomics
-                        </div>
-                        <div class="exp-card__tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Genome Assembly</span>
-                            <span class="tag">Prokka</span>
-                            <span class="tag">Roary</span>
-                            <span class="tag">PacBio</span>
-                            <span class="tag">Pangenomics</span>
-                        </div>
+                    <div class="pub-entry__meta">
+                        Journal of Applied Microbiology <span>·</span> 2024 <span>·</span>
+                        <a href="#" class="pub-entry__link">DOI ↗</a>
                     </div>
                 </div>
 
-                <!-- Vibrio genome — Co-author, genome assembly role -->
-                <div class="exp-card">
-                    <div class="exp-card__period">
-                        Genome Announc.<br>2015<br>
-                        <span style="color: var(--text-secondary); font-size: 11px;">Co-author</span>
+                <div class="pub-entry">
+                    <div class="pub-entry__title">
+                        Machine learning approaches for prediction of antimicrobial peptide activity from sequence data
                     </div>
-                    <div>
-                        <a href="https://journals.asm.org/doi/10.1128/genomea.00745-15" target="_blank" style="text-decoration: none; border: none;">
-                            <div class="exp-card__title">
-                                Genome Sequence of <em>Vibrio</em> VPAP30, Isolated from an Episode of Massive Mortality of Reared Larvae of the Scallop <em>Argopecten purpuratus</em> ↗
-                            </div>
-                        </a>
-                        <div class="exp-card__desc">
-                            Draft genome assembly (5.2 Mb, 63 contigs) of the pathogenic <em>Vibrio</em> strain responsible for a complete larval collapse in a Chilean scallop hatchery. Multi-institutional collaboration between Universidad de Chile, UCN, and Universidad Mayor. Contributed from the Center for Genomics and Bioinformatics.
-                        </div>
-                        <div class="exp-card__tags">
-                            <span class="tag">Illumina MiSeq</span>
-                            <span class="tag">SPAdes</span>
-                            <span class="tag">Prokka</span>
-                            <span class="tag">Trimmomatic</span>
-                        </div>
+                    <div class="pub-entry__meta">
+                        Computational Biology and Chemistry <span>·</span> 2023 <span>·</span>
+                        <a href="#" class="pub-entry__link">DOI ↗</a>
                     </div>
                 </div>
 
-                <!-- MetaSUB — Consortium member, Cell journal -->
-                <div class="exp-card">
-                    <div class="exp-card__period">
-                        Cell · 2021<br>
-                        <span style="color: var(--text-secondary); font-size: 11px;">Consortium</span>
+                <div class="pub-entry">
+                    <div class="pub-entry__title">
+                        Automated pipeline for next-generation sequencing quality control and variant annotation
                     </div>
-                    <div>
-                        <a href="https://www.cell.com/cell/fulltext/S0092-8674(21)00585-7" target="_blank" style="text-decoration: none; border: none;">
-                            <div class="exp-card__title">
-                                A global metagenomic map of urban microbiomes and antimicrobial resistance ↗
-                            </div>
-                        </a>
-                        <div class="exp-card__desc">
-                            The first systematic worldwide catalog of urban microbial ecosystems. The MetaSUB Consortium collected 4,728 metagenomic samples from mass-transit systems across 60 cities over 3 years, identifying 4,246 known species and over 10,000 novel viruses. Participated in standardized environmental sampling in Santiago, Chile.
-                        </div>
-                        <div class="exp-card__tags">
-                            <span class="tag">Metagenomics</span>
-                            <span class="tag">Environmental Sampling</span>
-                            <span class="tag">Illumina NGS</span>
-                            <span class="tag">AMR Profiling</span>
-                        </div>
+                    <div class="pub-entry__meta">
+                        Bioinformatics Advances <span>·</span> 2022 <span>·</span>
+                        <a href="#" class="pub-entry__link">DOI ↗</a>
                     </div>
                 </div>
+
+                <!-- TODO: Replace placeholder publications with real data -->
+                <p class="placeholder-note">
+                    Note: These are placeholder titles. Replace with your actual publications.
+                </p>
             </section>
 
-            <!-- ── 03 EXPERIENCE ── -->
+            <!-- ── 03 PROJECTS ── -->
             <section id="projects" class="section">
                 <div class="section__header">
                     <span class="section__number">03</span>
-                    <h2 class="section__title">Experience</h2>
+                    <h2 class="section__title">Projects</h2>
                     <div class="section__line"></div>
                 </div>
 
                 <div class="exp-card">
-                    <div class="exp-card__period">2017 · Present</div>
+                    <div class="exp-card__period">2024 — Present</div>
                     <div>
-                        <div class="exp-card__title">Backend & Full-Stack Developer · Industry</div>
+                        <div class="exp-card__title">Genomic Analysis Pipeline ↗</div>
                         <div class="exp-card__desc">
-                            Building APIs, data processing services, and web applications for private companies. Designing backend architecture, integrating third-party services, and shipping reliable software from internal tools to production systems.
+                            Automated pipeline for NGS data processing that reduced manual analysis time from 4+ hours to under 20 minutes. Handles quality control, alignment, variant calling, and visualization in a reproducible workflow.
+                        </div>
+                        <div class="exp-card__decision">
+                            Decision: Snakemake over Airflow — bioinformatics workflows are static DAGs
                         </div>
                         <div class="exp-card__tags">
                             <span class="tag">Python</span>
+                            <span class="tag">Snakemake</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exp-card">
+                    <div class="exp-card__period">2023 — 2024</div>
+                    <div>
+                        <div class="exp-card__title">Lab Data Management System ↗</div>
+                        <div class="exp-card__desc">
+                            Full-stack application for research teams to manage experimental data, track samples, and generate standardized reports. Replaced a fragmented spreadsheet workflow used by 3 research groups.
+                        </div>
+                        <div class="exp-card__decision">
+                            Decision: FastAPI + React over Django monolith — needed real-time updates for lab status
+                        </div>
+                        <div class="exp-card__tags">
                             <span class="tag">FastAPI</span>
-                            <span class="tag">Django</span>
+                            <span class="tag">React</span>
                             <span class="tag">PostgreSQL</span>
                             <span class="tag">Docker</span>
-                            <span class="tag">React</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="exp-card">
-                    <div class="exp-card__period">2015 · 2016</div>
+                    <div class="exp-card__period">2022 — 2023</div>
                     <div>
-                        <div class="exp-card__title">Complete Genome Assembly & Comparative Genomics Pipeline</div>
+                        <div class="exp-card__title">Antimicrobial Peptide Predictor ↗</div>
                         <div class="exp-card__desc">
-                            End-to-end bioinformatics pipeline for sequencing, assembling, and analyzing the first complete genome of <em>L. kunkeei</em> MP2. From raw PacBio long-reads to a fully annotated circular chromosome. Pangenome comparison against 16 strains revealed 113 unique genes and phage-mediated adaptation mechanisms. Published as first author.
+                            ML model trained on sequence data to predict antimicrobial activity of novel peptides. Achieved 89% accuracy on held-out test set. Deployed as an internal API consumed by the research team.
                         </div>
-                        <div class="exp-card__subtitle" style="font-size: 12px; font-family: var(--font-mono); color: var(--text-muted);">
-                            Centro de Genética y Genómica · Clinica Alemana Universidad del Desarrollo
+                        <div class="exp-card__decision">
+                            Decision: PyTorch over scikit-learn — needed custom loss function for imbalanced classes
                         </div>
                         <div class="exp-card__tags">
-                            <span class="tag">PacBio SMRT</span>
-                            <span class="tag">Celera</span>
-                            <span class="tag">Prokka</span>
-                            <span class="tag">Roary</span>
-                            <span class="tag">EggNOG</span>
-                            <span class="tag">PHAST</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">PyTorch</span>
+                            <span class="tag">FastAPI</span>
+                            <span class="tag">Docker</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="exp-card">
-                    <div class="exp-card__period">2014 · 2015</div>
-                    <div>
-                        <div class="exp-card__title">Pathogen Genome Sequencing · Chilean Aquaculture</div>
-                        <div class="exp-card__desc">
-                            Genome assembly and bioinformatic analysis of <em>Vibrio</em> VPAP30, the pathogen behind mass larval mortality events in Chilean scallop hatcheries. Collaborated across three institutions to deliver a 5.2 Mb draft genome that supported downstream pathogenicity studies.
-                        </div>
-                        <div class="exp-card__subtitle" style="font-size: 12px; font-family: var(--font-mono); color: var(--text-muted);">
-                            Centro de Genómica y Bioinformática · Universidad Mayor
-                        </div>
-                        <div class="exp-card__tags">
-                            <span class="tag">Illumina MiSeq</span>
-                            <span class="tag">SPAdes</span>
-                            <span class="tag">Prokka</span>
-                            <span class="tag">Trimmomatic</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="exp-card">
-                    <div class="exp-card__period">2016 · 2017</div>
-                    <div>
-                        <div class="exp-card__title">Urban Metagenomics Sampling · MetaSUB Consortium</div>
-                        <div class="exp-card__desc">
-                            Part of the international MetaSUB initiative that built the first global atlas of urban microbiomes, published in Cell. Executed standardized environmental sampling protocols across Santiago's transit system, contributing to the consortium's dataset of 4,728 samples from 60 cities.
-                        </div>
-                        <div class="exp-card__subtitle" style="font-size: 12px; font-family: var(--font-mono); color: var(--text-muted);">
-                            Center for Integrative Biology · Universidad Mayor
-                        </div>
-                        <div class="exp-card__tags">
-                            <span class="tag">Environmental Sampling</span>
-                            <span class="tag">Metagenomics</span>
-                            <span class="tag">Standardized Protocols</span>
-                        </div>
-                    </div>
-                </div>
+                <!-- TODO: Replace placeholder projects with real data -->
+                <p class="placeholder-note">
+                    Note: These are placeholder projects. Replace with your actual work.
+                </p>
             </section>
 
             <!-- ── 04 STACK ── -->
@@ -865,14 +246,6 @@
                             <i class="fa-solid fa-database"></i>
                             <span>PostgreSQL</span>
                         </div>
-                        <div class="stack-tag">
-                            <i class="fa-solid fa-terminal"></i>
-                            <span>Bash / Linux</span>
-                        </div>
-                        <div class="stack-tag">
-                            <i class="fa-brands fa-git-alt"></i>
-                            <span>Git</span>
-                        </div>
                     </div>
                 </div>
 
@@ -888,42 +261,8 @@
                             <span>PyTorch</span>
                         </div>
                         <div class="stack-tag">
-                            <i class="fa-solid fa-chart-column"></i>
-                            <span>Pandas</span>
-                        </div>
-                        <div class="stack-tag">
-                            <i class="fa-brands fa-js"></i>
-                            <span>JavaScript</span>
-                        </div>
-                        <div class="stack-tag">
-                            <i class="fa-brands fa-html5"></i>
-                            <span>HTML / CSS</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="stack-group">
-                    <div class="stack-group__label">Bioinformatics & Data</div>
-                    <div class="stack-group__items">
-                        <div class="stack-tag">
-                            <i class="fa-solid fa-dna"></i>
-                            <span>NGS Pipelines</span>
-                        </div>
-                        <div class="stack-tag">
-                            <i class="fa-solid fa-microscope"></i>
-                            <span>Genome Assembly</span>
-                        </div>
-                        <div class="stack-tag">
-                            <i class="fa-solid fa-diagram-project"></i>
-                            <span>Pangenomics</span>
-                        </div>
-                        <div class="stack-tag">
-                            <i class="fa-solid fa-bacterium"></i>
-                            <span>Metagenomics</span>
-                        </div>
-                        <div class="stack-tag">
-                            <i class="fa-solid fa-vial"></i>
-                            <span>BLAST</span>
+                            <i class="fa-brands fa-git-alt"></i>
+                            <span>Git</span>
                         </div>
                     </div>
                 </div>
@@ -938,7 +277,7 @@
                 </div>
 
                 <p class="contact-text">
-                    I'm open to conversations about interesting problems at the intersection of biology, data, and software. Whether it's a role, a collaboration, or just a question, feel free to reach out.
+                    I'm open to conversations about interesting problems at the intersection of biology, data, and software. Whether it's a role, a collaboration, or just a question — feel free to reach out.
                 </p>
 
                 <a href="mailto:freddy.asenjo.dev@gmail.com" class="contact-btn">
@@ -949,75 +288,14 @@
             <!-- ── FOOTER ── -->
             <footer class="footer">
                 <p>
-                    Designed & built by <a href="https://github.com/ZnaeW">Freddy</a> 🤙🏻
+                    Designed & built by <a href="https://github.com/ZnaeW">Freddy</a>
                 </p>
-                <p style="margin-top: 4px;">© <span id="year"></span></p>
+                <p class="footer__copyright">© <span id="year"></span></p>
             </footer>
         </main>
     </div>
 
-    <script>
-        // ─── Dynamic year ───
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // ─── Smooth scroll ───
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', e => {
-                e.preventDefault();
-                const id = link.getAttribute('href');
-                if (id !== '#') {
-                    const el = document.querySelector(id);
-                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // ─── Cursor Spotlight ───
-        const spotlight = document.getElementById('spotlight');
-        let isDesktop = window.innerWidth > 768;
-
-        if (isDesktop) {
-            document.addEventListener('mousemove', e => {
-                spotlight.classList.add('active');
-                spotlight.style.setProperty('--mouse-x', e.clientX + 'px');
-                spotlight.style.setProperty('--mouse-y', e.clientY + 'px');
-            });
-
-            document.addEventListener('mouseleave', () => {
-                spotlight.classList.remove('active');
-            });
-        }
-
-        // ─── Scroll Spy ───
-        const sections = document.querySelectorAll('.section');
-        const navItems = document.querySelectorAll('.nav__item');
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.id;
-                    navItems.forEach(item => {
-                        item.classList.toggle('active', item.dataset.section === id);
-                    });
-                }
-            });
-        }, {
-            rootMargin: '-20% 0px -60% 0px',
-            threshold: 0
-        });
-
-        sections.forEach(section => observer.observe(section));
-
-        // Fallback: activate Contact when scrolled to bottom
-        window.addEventListener('scroll', () => {
-            const scrollBottom = window.innerHeight + window.scrollY;
-            const docHeight = document.documentElement.scrollHeight;
-            if (docHeight - scrollBottom < 80) {
-                navItems.forEach(item => {
-                    item.classList.toggle('active', item.dataset.section === 'contact');
-                });
-            }
-        });
-    </script>
+    <!-- Scripts -->
+    <script src="js/main.js" defer></script>
 </body>
 </html>

@@ -1,57 +1,65 @@
-# Portfolio Personal - GitHub Page
+# Freddy Asenjo — Portfolio
 
-Este es un repositorio para una página personal/portfolio profesional alojada en GitHub Pages.
+Sitio portfolio personal que muestra mi trabajo en la intersección de biotecnología, bioinformática y desarrollo de software. Alojado en GitHub Pages.
 
-## Características
+## Diseño
 
-- Diseño moderno y minimalista inspirado en portfolios profesionales
-- Tema claro/oscuro con cambio dinámico y persistencia de preferencias
-- Totalmente responsivo para dispositivos móviles, tablets y escritorio
-- Secciones para mostrar proyectos, habilidades y experiencia profesional
-- Optimizado para GitHub Pages
+**"Editorial Científico"** — Una paleta de índigo con capas y tipografía inspirada en publicaciones académicas. Diseñado para comunicar credibilidad tanto a audiencias técnicas como científicas.
 
-## Estructura de archivos
+- **Display**: Cormorant Garamond
+- **Body**: DM Sans
+- **Code**: JetBrains Mono
+- **Paleta**: Índigo profundo (`#0f0a1a`) con acento lavanda (`#a78bfa`)
+
+### Influencias
+
+El diseño toma inspiración de varios portfolios y direcciones visuales:
+
+- **Brittany Chiang (v4)** — La estructura base de dos columnas con navegación por líneas y scroll spy. El punto de partida que se fue diferenciando deliberadamente.
+- **Portfolios editoriales / académicos** — La numeración de secciones (`01 — Background`), el formato de citación en publicaciones y la jerarquía tipográfica serif + sans-serif vienen de esta línea.
+- **Dirección propia** — La paleta índigo/lavanda, el efecto de cursor spotlight, la sección de Research como pieza central, y los callouts de decisiones técnicas en las cards de proyectos son decisiones originales para reflejar el perfil biotech + dev.
+
+## Estructura
 
 ```
-├── index.html              # Archivo HTML principal
+├── index.html          # Portfolio single-page
 ├── css/
-│   ├── styles.css          # Estilos principales
-│   └── themes.css          # Variables de temas (claro/oscuro)
+│   └── styles.css      # Todos los estilos (variables, layout, componentes, responsive)
 ├── js/
-│   ├── main.js             # Funcionalidades principales
-│   └── theme-switcher.js   # Código del selector de tema
+│   └── main.js         # Smooth scroll, cursor spotlight, scroll spy
 ├── img/
-│   └── placeholder-profile.jpg  # Imagen de perfil (reemplazar con tu foto)
-└── README.md               # Este archivo
+│   └── profile.jpg     # Foto de perfil
+├── .gitignore
+└── README.md
 ```
 
-## Uso
+## Secciones
 
-1. Haz un fork de este repositorio
-2. Clona el repositorio a tu máquina local
-3. Personaliza el contenido del archivo `index.html` con tu información
-4. Reemplaza la imagen de perfil en la carpeta `img/`
-5. Sube los cambios a tu repositorio de GitHub
-6. Activa GitHub Pages en la configuración del repositorio
+1. **Background** — Narrativa profesional que conecta biotecnología y software
+2. **Research** — Publicaciones con revisión de pares en formato de citación académica
+3. **Projects** — Cards de proyectos con callouts de decisiones técnicas
+4. **Stack** — Tecnologías separadas en Core y Also Work With
+5. **Contact** — Link directo a email
 
-## Personalización
+## Tecnologías
 
-- **Información personal**: Modifica el archivo `index.html` para incluir tu nombre, bio, proyectos y experiencia.
-- **Colores y temas**: Puedes cambiar los colores del tema en `css/themes.css`.
-- **Foto de perfil**: Reemplaza `img/placeholder-profile.jpg` con tu propia imagen.
-- **Redes sociales**: Actualiza los enlaces en la sección de footer en `index.html`.
+- HTML5, CSS3 (custom properties), JavaScript vanilla
+- Google Fonts, Font Awesome 6
+- GitHub Pages (hosting estático)
+- Sin build step, sin frameworks, sin dependencias
 
-## Tecnologías utilizadas
+## Desarrollo local
 
-- HTML5
-- CSS3 (con variables CSS para temas)
-- JavaScript (vanilla, sin frameworks)
-- Font Awesome (para iconos)
+Abrir `index.html` directamente en el navegador, o usar Live Server en VS Code para recarga automática.
+
+## Documentación y revisión
+
+La documentación de este proyecto y la revisión del código fueron realizadas con asistencia de [Claude](https://claude.ai) (Anthropic), incluyendo la refactorización de la estructura de archivos, extracción de estilos inline y organización del código.
 
 ## Licencia
 
-Este proyecto está disponible como código abierto bajo la licencia MIT.
+MIT
 
 ---
 
-Creado con ❤️ para mostrar tu trabajo al mundo.
+Construido por [Freddy Asenjo](https://github.com/ZnaeW) 🤙🏻
