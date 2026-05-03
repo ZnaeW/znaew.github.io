@@ -1,75 +1,61 @@
-/* ═══════════════════════════════════════════════════════
-   Freddy Asenjo — Portfolio V2
-   Main JavaScript
-   ═══════════════════════════════════════════════════════ */
+// ─── Dynamic year ───
+document.getElementById('year').textContent = new Date().getFullYear();
 
-document.addEventListener('DOMContentLoaded', () => {
+// ─── Smooth scroll ───
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const id = link.getAttribute('href');
+        if (id !== '#') {
+            const el = document.querySelector(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
 
-    // ─── Dynamic year ───
-    const yearEl = document.getElementById('year');
-    if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-    }
+// ─── Cursor Spotlight ───
+const spotlight = document.getElementById('spotlight');
+let isDesktop = window.innerWidth > 768;
 
-    // ─── Smooth scroll for anchor links ───
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            const id = link.getAttribute('href');
-            if (id !== '#') {
-                const el = document.querySelector(id);
-                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
+if (isDesktop) {
+    document.addEventListener('mousemove', e => {
+        spotlight.classList.add('active');
+        spotlight.style.setProperty('--mouse-x', e.clientX + 'px');
+        spotlight.style.setProperty('--mouse-y', e.clientY + 'px');
     });
 
-    // ─── Cursor Spotlight (desktop only) ───
-    const spotlight = document.getElementById('spotlight');
-    const isDesktop = window.innerWidth > 768;
+    document.addEventListener('mouseleave', () => {
+        spotlight.classList.remove('active');
+    });
+}
 
-    if (isDesktop && spotlight) {
-        document.addEventListener('mousemove', e => {
-            spotlight.classList.add('active');
-            spotlight.style.setProperty('--mouse-x', e.clientX + 'px');
-            spotlight.style.setProperty('--mouse-y', e.clientY + 'px');
-        });
+// ─── Scroll Spy ───
+const sections = document.querySelectorAll('.section');
+const navItems = document.querySelectorAll('.nav__item');
 
-        document.addEventListener('mouseleave', () => {
-            spotlight.classList.remove('active');
-        });
-    }
-
-    // ─── Scroll Spy ───
-    const sections = document.querySelectorAll('.section');
-    const navItems = document.querySelectorAll('.nav__item');
-
-    if (sections.length && navItems.length) {
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.id;
-                    navItems.forEach(item => {
-                        item.classList.toggle('active', item.dataset.section === id);
-                    });
-                }
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const id = entry.target.id;
+            navItems.forEach(item => {
+                item.classList.toggle('active', item.dataset.section === id);
             });
-        }, {
-            rootMargin: '-20% 0px -60% 0px',
-            threshold: 0
-        });
+        }
+    });
+}, {
+    rootMargin: '-20% 0px -60% 0px',
+    threshold: 0
+});
 
-        sections.forEach(section => observer.observe(section));
+sections.forEach(section => observer.observe(section));
 
-        // Fallback: activate Contact when scrolled to bottom
-        window.addEventListener('scroll', () => {
-            const scrollBottom = window.innerHeight + window.scrollY;
-            const docHeight = document.documentElement.scrollHeight;
-            if (docHeight - scrollBottom < 80) {
-                navItems.forEach(item => {
-                    item.classList.toggle('active', item.dataset.section === 'contact');
-                });
-            }
+// Fallback: activate Contact when scrolled to bottom
+window.addEventListener('scroll', () => {
+    const scrollBottom = window.innerHeight + window.scrollY;
+    const docHeight = document.documentElement.scrollHeight;
+    if (docHeight - scrollBottom < 80) {
+        navItems.forEach(item => {
+            item.classList.toggle('active', item.dataset.section === 'contact');
         });
     }
-
 });
