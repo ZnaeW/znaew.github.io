@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include head.html %}
+</head>
+<body>
+    <!-- Cursor Spotlight -->
+    <div class="spotlight" id="spotlight"></div>
+
+    <div class="layout">
+        <!-- ═══════ LEFT COLUMN ═══════ -->
+        <aside class="left-col">
+            <div class="left-col__top">
+                <h1 class="identity__name">Freddy Asenjo</h1>
+                <h2 class="identity__role">Biotechnology Engineer & Developer</h2>
+
+                <div class="identity__photo">
+                    <img src="{{ '/img/profile.jpg' | relative_url }}" alt="Freddy Asenjo" />
+                </div>
+
+                <p class="identity__tagline">
+                    From bioinformatics pipelines to full-stack systems. Building software where science meets data.
+                </p>
+            </div>
+
+            {% include nav.html %}
+
+            {% include social.html %}
+        </aside>
+
+        <!-- ═══════ RIGHT COLUMN ═══════ -->
+        <main class="right-col{% if page.layout == 'post' %} right-col--reading{% endif %}">
+            {{ content }}
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ '/js/main.js' | relative_url }}" defer></script>
+</body>
+</html>

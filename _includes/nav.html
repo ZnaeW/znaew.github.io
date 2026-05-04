@@ -1,0 +1,35 @@
+<nav class="nav" id="nav">
+    {% assign on_blog = false %}
+    {% if page.url contains '/blog' %}{% assign on_blog = true %}{% endif %}
+
+    <a href="{{ '/#background' | relative_url }}" class="nav__item{% unless on_blog %} active{% endunless %}" data-section="background">
+        <span class="nav__number">01</span>
+        <span class="nav__line"></span>
+        <span class="nav__label">Background</span>
+    </a>
+    <a href="{{ '/#research' | relative_url }}" class="nav__item" data-section="research">
+        <span class="nav__number">02</span>
+        <span class="nav__line"></span>
+        <span class="nav__label">Research</span>
+    </a>
+    <a href="{{ '/#projects' | relative_url }}" class="nav__item" data-section="projects">
+        <span class="nav__number">03</span>
+        <span class="nav__line"></span>
+        <span class="nav__label">Projects</span>
+    </a>
+    <a href="{{ '/#stack' | relative_url }}" class="nav__item" data-section="stack">
+        <span class="nav__number">04</span>
+        <span class="nav__line"></span>
+        <span class="nav__label">Stack</span>
+    </a>
+    <a href="{{ '/#contact' | relative_url }}" class="nav__item" data-section="contact">
+        <span class="nav__number">05</span>
+        <span class="nav__line"></span>
+        <span class="nav__label">Contact</span>
+    </a>
+    <a href="{{ '/blog/' | relative_url }}" class="nav__item{% if on_blog %} active{% endif %}" data-section="blog">
+        <span class="nav__number">06</span>
+        <span class="nav__line"></span>
+        <span class="nav__label">Blog</span>
+    </a>
+</nav>
