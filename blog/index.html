@@ -1,0 +1,34 @@
+---
+layout: default
+title: Blog
+---
+
+<section class="section">
+    <div class="section__header">
+        <span class="section__number">06</span>
+        <h2 class="section__title">Blog</h2>
+        <div class="section__line"></div>
+    </div>
+
+    <p class="blog-index__intro">
+        Notes from the intersection of biology, data, and software. Long-form writing on bioinformatics pipelines, backend systems, and what I learn along the way.
+    </p>
+
+    {% if site.posts.size > 0 %}
+        <ul class="blog-index__list">
+            {% for post in site.posts %}
+                <li class="blog-index__item">
+                    <a href="{{ post.url | relative_url }}" class="blog-index__link">
+                        <div class="blog-index__date">{{ post.date | date: "%B %-d, %Y" }}</div>
+                        <h3 class="blog-index__title">{{ post.title }}</h3>
+                        {% if post.excerpt %}
+                            <p class="blog-index__excerpt">{{ post.excerpt | strip_html | truncate: 180 }}</p>
+                        {% endif %}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="blog-index__empty">No posts yet, check back soon.</p>
+    {% endif %}
+</section>
