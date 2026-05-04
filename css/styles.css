@@ -1,3 +1,7 @@
+/* ═══════════════════════════════════════════════════════
+   Freddy Asenjo — Portfolio
+   ═══════════════════════════════════════════════════════ */
+
 /* ─── VARIABLES ─── */
 :root {
     --bg-deep:        #0f0a1a;
@@ -54,6 +58,7 @@ body {
         transparent 40%
     );
 }
+
 .spotlight.active { opacity: 1; }
 
 /* ─── LAYOUT ─── */
@@ -78,8 +83,7 @@ body {
     justify-content: space-between;
 }
 
-.left-col__top { }
-
+/* ─── IDENTITY ─── */
 .identity__name {
     font-family: var(--font-display);
     font-size: 56px;
@@ -201,6 +205,9 @@ body {
     color: var(--text-primary);
 }
 
+/* ─── SCROLL-SPY ACTIVE STATE ─── */
+.nav__item.active .nav__number { color: var(--accent); }
+
 /* ─── SOCIAL ─── */
 .social {
     display: flex;
@@ -267,6 +274,11 @@ body {
     background: var(--accent-border);
 }
 
+/* Intro paragraph below section header (extracted from inline style) */
+.section__intro {
+    margin-bottom: 28px;
+}
+
 .section p {
     margin-bottom: 18px;
     font-size: 15px;
@@ -284,7 +296,7 @@ body {
     border-color: var(--accent);
 }
 
-/* ─── EXPERIENCE CARDS ─── */
+/* ─── EXPERIENCE / PROJECT CARDS ─── */
 .exp-card {
     display: grid;
     grid-template-columns: 120px 1fr;
@@ -336,6 +348,14 @@ body {
     line-height: 1.65;
     color: var(--text-muted);
     margin-bottom: 12px;
+}
+
+/* Technical decision callout (extracted from inline style) */
+.exp-card__decision {
+    font-size: 12px;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    margin-bottom: 10px;
 }
 
 .exp-card__tags {
@@ -393,6 +413,18 @@ body {
 .pub-entry__meta span {
     opacity: 0.4;
     margin: 0 6px;
+}
+
+/* DOI / external link inside publication meta (extracted from inline style) */
+.pub-entry__link {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-border);
+    transition: border-color 0.2s ease;
+}
+
+.pub-entry__link:hover {
+    border-color: var(--accent);
 }
 
 /* ─── STACK SECTION ─── */
@@ -498,10 +530,20 @@ body {
     color: var(--accent);
 }
 
-/* ─── SCROLL-SPY INDICATOR (left col) ─── */
-.nav__item.active .nav__number { color: var(--accent); }
+/* Footer copyright line (extracted from inline style) */
+.footer__copyright {
+    margin-top: 4px;
+}
 
-/* ─── GRAIN OVERLAY (subtle texture) ─── */
+/* ─── PLACEHOLDER NOTE (temporary, remove when real content is added) ─── */
+.placeholder-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 20px;
+    font-style: italic;
+}
+
+/* ─── GRAIN OVERLAY ─── */
 body::after {
     content: "";
     position: fixed;
@@ -514,6 +556,17 @@ body::after {
     background-repeat: repeat;
     background-size: 256px 256px;
 }
+
+/* ─── FADE-IN ON LOAD ─── */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.left-col__top   { animation: fadeUp 0.6s var(--ease-out) 0.1s both; }
+.nav              { animation: fadeUp 0.6s var(--ease-out) 0.25s both; }
+.social           { animation: fadeUp 0.6s var(--ease-out) 0.35s both; }
+.section          { animation: fadeUp 0.5s var(--ease-out) 0.3s both; }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 1100px) {
@@ -555,14 +608,3 @@ body::after {
         gap: 8px;
     }
 }
-
-/* ─── FADE-IN ON LOAD ─── */
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-.left-col__top   { animation: fadeUp 0.6s var(--ease-out) 0.1s both; }
-.nav              { animation: fadeUp 0.6s var(--ease-out) 0.25s both; }
-.social           { animation: fadeUp 0.6s var(--ease-out) 0.35s both; }
-.section          { animation: fadeUp 0.5s var(--ease-out) 0.3s both; }
