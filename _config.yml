@@ -1,4 +1,16 @@
-# Jekyll
-_site/
-.jekyll-cache/
-.jekyll-metadata
+title: Freddy Asenjo
+description: Biotechnology Engineer & Developer
+url: "https://znaew.github.io"
+baseurl: ""
+ 
+permalink: /blog/:title/
+ 
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+ 
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+ 
